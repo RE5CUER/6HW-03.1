@@ -1,0 +1,19 @@
+---
+- name: install PHP
+  apt:
+    name: php-fpm
+    state: present
+    update_cache: yes
+
+- name: config PHP listen port 9000
+  lineinfile:
+    path: /etc/php/7.4/fpm/pool.d/www.conf
+    regexp: '^listen ='
+    line: "listen = 127.0.0.1:9000"
+  notify: restart php-fpm
+
+- name: PHP is running
+  service:
+    name: php7.4-fpm
+    state: started
+    enabled: true

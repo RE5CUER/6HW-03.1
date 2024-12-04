@@ -1,0 +1,14 @@
+---
+- name: config Nginx and PHP
+  hosts: app
+  become: true
+  roles:
+    - users
+    - http
+
+- name: config PHP
+  hosts: database
+  become: true
+  roles:
+    - users
+    - php

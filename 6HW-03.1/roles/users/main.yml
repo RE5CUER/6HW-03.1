@@ -1,0 +1,12 @@
+---
+- name: new_user
+  user:
+    name: grid2
+    state: present
+    shell: /bin/bash
+
+- name: Set up SSH key for the user
+  authorized_key:
+    user: grid2
+    state: present
+    key: "{{ lookup('file', '/path/to/public/key/id_rsa.pub') }}"
